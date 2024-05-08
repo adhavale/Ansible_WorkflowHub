@@ -1,0 +1,16 @@
+---
+- name: Validations on Mgmt cluster
+  hosts: 192.168.161.145
+  tasks:
+    - name: Get the node list
+      ansible.builtin.shell:
+        cmd: kubectl get node -A -owide
+      register: node_output
+    -  debug:
+             msg: "{{ node_output }}"
+    - name: Get list of pods deployed through workflow
+      ansible.builtin.shell:
+        cmd: kubectl get pods -n kube-system
+      register: pod_out
+    -  debug:
+             msg: "{{ pod_out }}"
