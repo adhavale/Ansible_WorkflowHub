@@ -1,6 +1,6 @@
 ---
 - name: Validations on worker node
-  hosts: worker
+  hosts: 192.168.161.123
   tasks:
     - name: Worker node list
       ansible.builtin.shell:
