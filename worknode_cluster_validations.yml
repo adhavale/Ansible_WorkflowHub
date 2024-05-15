@@ -1,6 +1,8 @@
 ---
 - name: Validations on worker node
   hosts: 192.168.161.123
+  vars:
+    k8s_kubeconfig: "/home/capv/.kube/config"
   tasks:
     - name: Worker node list
       ansible.builtin.shell:
@@ -14,3 +16,9 @@
       register: pod_out
     -  debug:
              msg: "{{ pod_out.stdout }}"
+    - name: Read the kubeconfig file for workload cluster
+      ansible.builtin.file:
+        path: /home/capv/.kube/config
+        register: workload_kubeconfig
+    - debug:
+        var: workload_kubeconfig.content
