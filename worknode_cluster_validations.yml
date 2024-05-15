@@ -14,7 +14,6 @@
       register: pod_out
     -  debug:
              msg: "{{ pod_out.stdout }}"
-    - name: Read the kubeconfig file for workload cluster
-      ansible.builtin.file:
-        path: /home/capv/.kube/config
-        register: workload_kubeconfig
+    - name: print the kubeconfig file for workload cluster
+      debug:
+        var: lookup('file', '~/.kube/config')
