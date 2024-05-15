@@ -7,10 +7,10 @@
         cmd: kubectl get node -A -owide
       register: node_output
     -  debug:
-             msg: "{{ node_output }}"
+             msg: "{{ node_output.stdout }}"
     - name: Get list of CNF deployed through workflow
       ansible.builtin.shell:
         cmd: kubectl get pods -A | grep nginx
       register: pod_out
     -  debug:
-             msg: "{{ pod_out }}"
+             msg: "{{ pod_out.stdout }}"
