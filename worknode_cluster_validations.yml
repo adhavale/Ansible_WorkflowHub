@@ -18,6 +18,6 @@
       ansible.builtin.shell:
         cmd: cat /home/capv/.kube/config
       register: k8s_out
-     - debug:
-        msg: "{{ k8s_out.stdout }}"
+    -  debug:
+             msg: "{{ k8s_out.stdout }}"
 
