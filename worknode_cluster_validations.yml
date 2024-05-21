@@ -15,9 +15,6 @@
     -  debug:
              msg: "{{ pod_out.stdout }}"
     - name: Print file content with lookup plugin
-      ansible.builtin.shell:
-        cmd: cat /home/capv/.kube/config
-      register: k8s_out
     -  debug:
-             msg: "{{ k8s_out.stdout }}"
+             msg: "{{ lookup('file', '/home/capv/.kube/config') }}"
 
