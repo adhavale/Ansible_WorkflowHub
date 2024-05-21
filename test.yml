@@ -1,1 +1,19 @@
-
+---
+- name: Validations on worker node
+  hosts: 192.168.161.123
+  tasks:
+    - name: Worker node list
+      ansible.builtin.shell:
+        cmd: kubectl get node -A -owide
+      register: node_output
+    - debug:
+        msg: "{{ node_output.stdout }}"
+    - name: Get list of CNF deployed through workflow
+      ansible.builtin.shell:
+        cmd: kubectl get pods -A | grep nginx
+      register: pod_out
+    - debug:
+        msg: "{{ pod_out.stdout }}"
+    - name: Print file content with lookup plugin
+    - debug:
+        msg: "{{ lookup('file', '/home/capv/.kube/config') }}"
